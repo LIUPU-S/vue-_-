@@ -1,9 +1,13 @@
 <template>
   <el-container id="layout-container">
-    <el-aside id="layout-aside" width="250px"><layout-aside /></el-aside>
+    <el-aside id="layout-aside" width="250px"
+      >恻栏菜单<layout-aside
+    /></el-aside>
     <el-container>
-      <el-header id="layout-header" height="75px"><layout-header /></el-header>
-      <elmain id="layout-main"><layout-main /></elmain>
+      <el-header id="layout-header" height="75px"
+        >头部信息<layout-header
+      /></el-header>
+      <elmain id="layout-main">数据试图<layout-main /></elmain>
     </el-container>
   </el-container>
 </template>

@@ -36,6 +36,21 @@ const routes = [
     name: "OneTwo",
     component: () => import("../views/account/OneTwo.vue"),
   },
+  {
+    path: "/detailed",
+    name: "DeTailed",
+    component: () => import("../views/account/DeTailed.vue"),
+  },
+  {
+    path: "/tabelindex",
+    name: "TableIndex",
+    component: () => import("../views/account/TableIndex.vue"),
+  },
+  {
+    path: "/tainfo",
+    name: "TaInfo",
+    component: () => import("../views/account/TaInfo.vue"),
+  },
 ];
 
 const router = createRouter({

@@ -2,18 +2,14 @@
 <script>
 import { reactive, ref } from "vue";
 export default {
-  name: "Login",
-  props: {},
   setup(props, { root }) {
     const data = reactive({
       tab_menu: [
-        { type: "login", label: "登录" },
+        { type: "lgoin", label: "登陆" },
         { type: "register", label: "注册" },
       ],
     });
-    const toggleMenu = (type) => {
-      current_menu.value = type;
-    };
+
     const form = reactive({
       item: {
         username: "",
@@ -22,36 +18,36 @@ export default {
         code: "",
       },
     });
-    const add = () => {
-      alert("bost");
-    };
     let current_menu = ref(data.tab_menu[0].type);
+    const toggleMenu = (type) => {
+      current_menu.value = type;
+    };
     return {
+      props,
+      root,
       data,
       current_menu,
       toggleMenu,
-      add,
-      props,
-      root,
       form,
     };
   },
 };
 </script>
+
 <template>
   <div id="login">
-    <div class="form-wrap">
+    <div class="from-wrap">
       <ul class="menu-tab">
         <li
-          @click="add"
-          :class="{ current: data.current_menu === item.type }"
+          @click="toggleMenu(item.type)"
           v-for="item in data.tab_menu"
           :key="item.type"
+          :class="{ current: current_menu === item.type }"
         >
           {{ item.label }}
         </li>
       </ul>
-      <el-form ref="form" :model="form">
+      <el-form ref="form" :model="form" label-width="80px">
         <el-form-item>
           <label class="form-label">用户名</label>
           <el-input v-model="form.item.username"></el-input>
@@ -60,9 +56,9 @@ export default {
           <label class="form-label">密码</label>
           <el-input type="password" v-model="form.item.password"></el-input>
         </el-form-item>
-        <el-form-item v-show="current_menu === 'refgister'">
-          <label class="form-label">确认密码</label>
-          <el-input type="password" v-model="form.item.passwords"></el-input>
+        <el-form-item prop="passwords" v-if="current_menu === 'register'">
+          <label class="form-label">重输密码</label>
+          <el-input type="password"></el-input>
         </el-form-item>
         <el-form-item>
           <label class="form-label">验证码</label>
@@ -71,12 +67,14 @@ export default {
               <el-input v-model="form.item.code"></el-input>
             </el-col>
             <el-col :span="10">
-              <el-button class="butn" type="primary">获取验证码</el-button>
+              <el-button type="success" class="el-button-bolck"
+                >获取验证码</el-button
+              >
             </el-col>
           </el-row>
         </el-form-item>
         <el-form-item>
-          <el-button class="butn" type="primary" @click="submit"
+          <el-button type="primary" @click="submit" class="el-button-bolck"
             >登陆</el-button
           >
         </el-form-item>
@@ -85,37 +83,37 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 #login {
   height: 100vh;
   background-color: #344a5f;
 }
-.form-wrap {
+.from-wrap {
   width: 320px;
   padding-top: 100px;
   margin: auto;
 }
 .menu-tab {
   text-align: center;
-  li {
-    display: inline-block;
-    padding: 10px 24px;
-    margin: 0 10px;
-    color: #fff;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    &.current {
-      background-color: rgba(199, 135, 135, 0.836);
-    }
-  }
+}
+li {
+  display: inline-block;
+  padding: 10px 24px;
+  margin: 0 10px;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.current {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 .form-label {
   display: block;
   color: #fff;
   font-size: 14px;
 }
-.butn {
+.el-button-bolck {
   display: block;
   width: 100%;
 }
