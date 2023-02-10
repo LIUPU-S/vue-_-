@@ -3,9 +3,24 @@
     <!-- <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> -->
   </nav>
-  <router-view />
+  <el-config-provider :locale="locale">
+    <router-view />
+  </el-config-provider>
+
   <!-- <el-button type="primary">hahahaha</el-button> -->
 </template>
+<script>
+import { zhTw } from "element-plus/lib/locale/lang/zh-cn";
+export default {
+  name: "App",
+  setup() {
+    let locale = zhTw;
+    return {
+      locale,
+    };
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

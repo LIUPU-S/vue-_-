@@ -1,40 +1,42 @@
 <!-- eslint-disable vue/no-unused-vars -->
 <template>
   <div>
-    <el-row class="ones">
-      <el-col :span="18">筛选区</el-col>
+    <el-row>
+      <el-col :span="18">
+        <el-form :inline="true" label-width="80px">
+          <el-form-item label="类别">
+            <el-select
+              placeholder="请选择"
+              class="width-160"
+              v-model="data.category"
+            >
+              <el-option
+                v-for="item in data.category_options"
+                :key="item.value"
+                :value="item.value"
+                :label="item.label"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="关键字">
+            <el-select
+              placeholder="请选择"
+              class="width-100"
+              v-model="data.category"
+            ></el-select>
+          </el-form-item>
+          <el-form-item label="">
+            <el-select placeholder="请选择" class="width-180"></el-select>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="danger" class="width-160">搜索</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
       <el-col :span="6">
         <el-button type="danger" class="pull-right">新增</el-button>
       </el-col>
     </el-row>
-    <el-col :span="18">
-      <el-form>
-        <el-form-item label="类别">
-          <el-select
-            placeholder="请选择"
-            class="width-160"
-            v-model="data.category"
-          >
-            <el-option
-              v-for="item in data.category_options"
-              :key="item.value"
-              :value="item.value"
-              :label="item.label"
-            >
-            </el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="关键字">
-          <el-select placeholder="请选择" class="width-100"></el-select>
-        </el-form-item>
-        <el-form-item label="输入关键字">
-          <el-select placeholder="请选择" class="width-180"></el-select>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="danger" class="width-160">搜索</el-button>
-        </el-form-item>
-      </el-form>
-    </el-col>
     <el-table
       ref="table"
       border
