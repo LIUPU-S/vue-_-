@@ -1,4 +1,4 @@
-<template>
+<template id="BasisTable">
   <div>
     <el-table :data="date.table_data" border style="width: 100%">
       <el-table-column prop="date" label="日期"></el-table-column>
@@ -12,7 +12,12 @@
 import { reactive } from "vue";
 export default {
   name: "tableComponents",
-  components: {},
+  components: [
+    "BasisTable",
+    {
+      tempalte: "#BasisTable",
+    },
+  ],
   props: {},
   setup(props) {
     const data = reactive({
