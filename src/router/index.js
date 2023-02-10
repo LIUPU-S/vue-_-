@@ -27,9 +27,14 @@ const routes = [
     component: () => import("../layout/index.vue"),
   },
   {
-    path: "/ones",
-    name: "infoIndex",
-    component: () => import("../views/info/index.vue"),
+    path: "/list",
+    name: "ListPape",
+    component: () => import("../views/account/LsitPape.vue"),
+  },
+  {
+    path: "/onetwo",
+    name: "OneTwo",
+    component: () => import("../views/account/OneTwo.vue"),
   },
 ];
 
