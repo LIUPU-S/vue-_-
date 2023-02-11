@@ -34,13 +34,18 @@
         </el-form>
       </el-col>
       <el-col :span="6">
-        <el-button type="danger" class="pull-right">新增</el-button>
+        <el-input table="请输入" v-model="data.item.name"></el-input>
+        <el-input table="请输入" v-model="data.item.address"></el-input>
+        <el-button type="danger" class="pull-right" @click="add()"
+          >新增</el-button
+        >
       </el-col>
     </el-row>
     <el-table
-      ref="table"
+      lazy
+      :load="load"
       border
-      :data="data.tableData"
+      :data="mo"
       style="width: 100%"
       @selection-change="handlerSelectionChange"
     >
@@ -51,7 +56,7 @@
       <el-table-column prop="address" width="200" label="操作">
         <template #default="scope">
           <el-button type="danger" size="mini">编辑</el-button>
-          <el-button size="mini">删除</el-button>
+          <el-button size="mini" @click="ded()">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -61,6 +66,7 @@
       </el-col>
       <el-col :span="18">
         <el-pagination
+          ref="mytable"
           class="pull-right"
           sizs="small"
           background
@@ -93,7 +99,24 @@ export default {
         { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
         { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
       ],
+      item: { name: "", address: "", date: "" },
     });
+    var mo = new Array(
+      { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
+      { name: "XasdasdXXX", address: "XXXasdasdasdXXXXXXX", date: "2022-02-02" }
+    );
+    function add() {
+      alert(mo.length + "asdaasas");
+      mo.push({
+        name: data.item.name,
+        address: data.item.name,
+        date: "2022-02-02",
+      });
+      alert(mo.length + "asd");
+    }
+    function ded(index) {
+      mo.splice(index, 1);
+    }
     function handlerSelectionChange(val) {
       val;
     }
@@ -110,6 +133,9 @@ export default {
       handlerSelectionChange,
       handlerSizeChange,
       handlerCurrentChange,
+      add,
+      mo,
+      ded,
     };
   },
 };

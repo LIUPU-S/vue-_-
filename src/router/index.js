@@ -6,25 +6,83 @@ const routes = [
     path: "/",
     name: "home",
     redirect: "Login",
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    hidden: true,
   },
   {
     path: "/login",
     name: "Login",
+    hidden: true,
     component: () => import("../views/account/Login.vue"),
   },
   {
     path: "/home",
     name: "Home",
-    component: () => import("../layout/index.vue"),
+    meta: {
+      title: "控制台",
+    },
+    children: [
+      {
+        path: "/console",
+        name: "Console",
+        meta: {
+          title: "首页",
+        },
+        component: () => import("../views/console/ConIndex.vue"),
+      },
+    ],
+    component: () => import("../views/account/LayoutIdex.vue"),
+  },
+  {
+    path: "/news",
+    name: "News",
+    meta: {
+      title: "信息管理",
+    },
+    children: [
+      {
+        path: "/newsIndex",
+        name: "NewsIndex",
+        meta: {
+          title: "信息列表",
+        },
+        component: () => import("../views/info/infoIndex.vue"),
+      },
+      {
+        path: "/newsCategory",
+        name: "NewsCategory",
+        meta: {
+          title: "信息分类",
+        },
+        component: () => import("../views/info/infoCategory.vue"),
+      },
+      {
+        path: "/newsDetailed",
+        name: "NewsDetailed",
+        meta: {
+          title: "信息详情",
+        },
+        component: () => import("../views/info/infoDetailed.vue"),
+      },
+    ],
+    component: () => import("../views/account/LsitPape.vue"),
+  },
+  {
+    path: "/user",
+    name: "User",
+    meta: {
+      title: "用户管理",
+    },
+    children: [
+      {
+        path: "/userIndex",
+        name: "UserIndex",
+        meta: {
+          title: "用户列表",
+        },
+        component: () => import("../views/user/userIndex.vue"),
+      },
+    ],
+    component: () => import("../views/account/LsitPape.vue"),
   },
   {
     path: "/list",
@@ -32,14 +90,9 @@ const routes = [
     component: () => import("../views/account/LsitPape.vue"),
   },
   {
-    path: "/onetwo",
-    name: "OneTwo",
-    component: () => import("../views/account/OneTwo.vue"),
-  },
-  {
     path: "/detailed",
     name: "DeTailed",
-    component: () => import("../views/account/DeTailed.vue"),
+    component: () => import("../views/info/infoDetailed.vue"),
   },
   {
     path: "/tabelindex",
