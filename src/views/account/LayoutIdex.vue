@@ -8,6 +8,7 @@
         background-color="#344a5f"
         text-color="#fff"
         active-text-color="#ffd04b"
+        :collapse="data.collapse"
       >
         <template v-for="item in routers" :key="item.path">
           <template v-if="!item.hidden">
@@ -46,12 +47,16 @@ import LayoutAside from "../../layout/AsideName.vue";
 import LayoutHeader from "../../layout/HeaderName.vue";
 import LayoutMain from "../../layout/MainName.vue";
 import { useRouter } from "vue-router";
+import { reactive } from "vue";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Layout",
   // eslint-disable-next-line vue/no-unused-components
   components: { LayoutAside, LayoutHeader, LayoutMain },
   setup() {
+    const data = reactive({
+      collapse: false,
+    });
     const { options } = useRouter();
     const routers = options.routes;
     const hasOnlyChild = (children) => {
@@ -76,6 +81,7 @@ export default {
     return {
       routers,
       hasOnlyChild,
+      data,
     };
   },
 };
