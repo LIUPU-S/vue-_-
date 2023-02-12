@@ -42,11 +42,11 @@
       </el-col>
     </el-row>
     <el-table
-      lazy
-      :load="load"
+      ref="aa"
       border
-      :data="mo"
+      :data="data.mo"
       style="width: 100%"
+      :index="data.mo.index"
       @selection-change="handlerSelectionChange"
     >
       <el-table-column type="selection" width="40"></el-table-column>
@@ -55,8 +55,8 @@
       <el-table-column prop="date" label="日期"></el-table-column>
       <el-table-column prop="address" width="200" label="操作">
         <template #default="scope">
-          <el-button type="danger" size="mini">编辑</el-button>
-          <el-button size="mini" @click="ded()">删除</el-button>
+          <el-button type="danger" size="mini" @click="hhh">编辑</el-button>
+          <el-button size="mini" @click="ded(index)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -85,37 +85,38 @@
 
 <script>
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 export default {
   setup(props, { root }) {
     const data = reactive({
-      cc: "",
       current_page: 1,
       category: 0,
       category_options: [
         { label: "人工智能", value: 0 },
         { label: "技术", value: 1 },
       ],
-      tableData: [
-        { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
-        { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
-      ],
       item: { name: "", address: "", date: "" },
+      mo: new Array(
+        { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
+        {
+          name: "XasdasdXXX",
+          address: "XXXasdasdasdXXXXXXX",
+          date: "2022-02-02",
+        }
+      ),
     });
-    var mo = new Array(
-      { name: "XXXX", address: "XXXXXXXXXX", date: "2022-02-02" },
-      { name: "XasdasdXXX", address: "XXXasdasdasdXXXXXXX", date: "2022-02-02" }
-    );
     function add() {
-      alert(mo.length + "asdaasas");
-      mo.push({
+      data.mo.push({
         name: data.item.name,
         address: data.item.name,
         date: "2022-02-02",
       });
-      alert(mo.length + "asd");
+      this.isUpdate = !this.isUpdate;
+
+      console.log(data.mo);
     }
     function ded(index) {
-      mo.splice(index, 1);
+      data.mo.splice(index, 1);
     }
     function handlerSelectionChange(val) {
       val;
@@ -126,6 +127,12 @@ export default {
     function handlerCurrentChange(val) {
       val;
     }
+    const { push } = useRouter();
+    const hhh = () => {
+      push({
+        path: "/infoDetailed",
+      });
+    };
     return {
       data,
       props,
@@ -134,8 +141,9 @@ export default {
       handlerSizeChange,
       handlerCurrentChange,
       add,
-      mo,
+      hhh,
       ded,
+      bn,
     };
   },
 };

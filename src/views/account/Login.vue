@@ -74,7 +74,7 @@ export default {
           </el-row>
         </el-form-item>
         <el-form-item>
-          <router-link to="/list" class="el-button-bolck">
+          <router-link to="/user" class="el-button-bolck">
             <el-button type="primary" @click="submit" class="el-button-bolck"
               >登陆</el-button
             ></router-link

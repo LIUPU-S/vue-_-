@@ -2,12 +2,10 @@
   <!-- <nav>
     <router-link to="/">登陆页面</router-link> |
     <router-link to="/list">列表页面</router-link> |
-    <router-link to="/onetwo">树形列表</router-link> |
+    <router-link to="/newsCategory">树形列表</router-link> |
     <router-link to="/tainfo">组件封装</router-link> |
   </nav> -->
-  <el-config-provider :locale="locale">
-    <router-view />
-  </el-config-provider>
+  <router-view />
 
   <!-- <el-button type="primary">hahahaha</el-button> -->
 </template>

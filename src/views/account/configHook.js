@@ -1,7 +1,7 @@
 import { reactive } from "vue";
 export function configHook() {
   const config = reactive({
-    seletion: true,
+    selection: true,
     batch_delete: true,
     pagination: true,
   });

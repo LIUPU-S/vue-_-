@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
 
 const routes = [
+  // 根路由
   {
     path: "/",
     name: "home",
@@ -9,103 +10,71 @@ const routes = [
     hidden: true,
   },
   {
-    path: "/login",
-    name: "Login",
-    hidden: true,
-    component: () => import("../views/account/Login.vue"),
-  },
-  {
-    path: "/home",
-    name: "Home",
+    path: "/s",
+    name: "CsIndex",
     meta: {
       title: "控制台",
     },
-    children: [
-      {
-        path: "/console",
-        name: "Console",
-        meta: {
-          title: "首页",
-        },
-        component: () => import("../views/console/ConIndex.vue"),
-      },
-    ],
-    component: () => import("../views/account/LayoutIdex.vue"),
+    component: () => import("../layout/Index.vue"),
   },
+
+  // 集中子路由
   {
     path: "/news",
     name: "News",
     meta: {
       title: "信息管理",
     },
+    component: () => import("../layout/Index.vue"),
     children: [
       {
-        path: "/newsIndex",
-        name: "NewsIndex",
+        path: "/login",
+        name: "Login",
         meta: {
-          title: "信息列表",
+          title: "登陆",
         },
-        component: () => import("../views/info/infoIndex.vue"),
+        component: () => import("../views/account/Login.vue"),
       },
       {
-        path: "/newsCategory",
-        name: "NewsCategory",
+        path: "/list",
+        name: "ListPage",
         meta: {
-          title: "信息分类",
+          title: "列表数据",
+        },
+        component: () => import("../views/account/ListPape.vue"),
+      },
+      {
+        path: "/tree",
+        name: "infoCategory",
+        meta: {
+          title: "树形表单",
         },
         component: () => import("../views/info/infoCategory.vue"),
       },
       {
-        path: "/newsDetailed",
-        name: "NewsDetailed",
+        path: "/tainfo",
+        name: "TaInfo",
         meta: {
-          title: "信息详情",
+          title: "组件复用",
         },
-        component: () => import("../views/info/infoDetailed.vue"),
+        component: () => import("../views/account/TaInfo.vue"),
       },
     ],
-    component: () => import("../views/account/LsitPape.vue"),
   },
   {
-    path: "/user",
-    name: "User",
+    path: "/infoDetailed",
+    name: "infoDetailed",
     meta: {
-      title: "用户管理",
+      title: "信息页",
     },
-    children: [
-      {
-        path: "/userIndex",
-        name: "UserIndex",
-        meta: {
-          title: "用户列表",
-        },
-        component: () => import("../views/user/userIndex.vue"),
-      },
-    ],
-    component: () => import("../views/account/LsitPape.vue"),
-  },
-  {
-    path: "/list",
-    name: "ListPape",
-    component: () => import("../views/account/LsitPape.vue"),
-  },
-  {
-    path: "/detailed",
-    name: "DeTailed",
     component: () => import("../views/info/infoDetailed.vue"),
   },
   {
-    path: "/tabelindex",
-    name: "TableIndex",
-    component: () => import("../views/account/TableIndex.vue"),
-  },
-  {
-    path: "/tainfo",
-    name: "TaInfo",
-    component: () => import("../views/account/TaInfo.vue"),
+    path: "/c",
+    name: "cs",
+    component: () => import("../views/cs.vue"),
   },
 ];
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
